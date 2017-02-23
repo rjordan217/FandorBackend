@@ -1,1 +1,1 @@
-json.array! @films, partial: '/api/shared/film', as: :film
+json.partial! 'api/shared/rating', rating: @rating, errors: @errors

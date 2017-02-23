@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220225129) do
+ActiveRecord::Schema.define(version: 20170222181851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "film_relations", force: :cascade do |t|
+    t.integer  "film1_id",   null: false
+    t.integer  "film2_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "film_relations", ["film1_id"], name: "index_film_relations_on_film1_id", using: :btree
+  add_index "film_relations", ["film2_id"], name: "index_film_relations_on_film2_id", using: :btree
 
   create_table "films", force: :cascade do |t|
     t.string   "title",       null: false

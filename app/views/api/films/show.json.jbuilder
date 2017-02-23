@@ -1,1 +1,1 @@
-json.extract! @film, :title, :description, :url_slug, :year
+json.partial! 'api/shared/film', film: @film
