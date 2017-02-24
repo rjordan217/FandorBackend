@@ -67,53 +67,54 @@ request method is listed first, followed by the URI, then optional or required
 data, and finally the View rendered by Rails. All responses are returned in JSON
 format.
 - Session
-  + POST '/api/session', *username and password required* -renders-> '/api/user/show'
-    * Request data structure: {user: {username: *string*, password: *string*}}
+  + POST '/api/session', \*username and password required\* -renders-> '/api/user/show'
+    * Request data structure: {user: {username: \*string\*, password: \*string\*}}
     * Success will reset :session_token in database (and in cookie)
   + DELETE '/api/session' -renders-> '/api/user/show'
     * Successful logout should render a blank user
 - User
-  + POST '/api/user', *username and password required* -renders-> :show
-    * Request data structure: {user: {username: *string*, password: *string*}}
+  + POST '/api/user', \*username and password required\* -renders-> :show
+    * Request data structure: {user: {username: \*string\*, password: \*string\*}}
   + GET '/api/user' -renders-> :show
     * Verifies user by :session_token, or returns an "empty" user JSON
   + DELETE '/api/user' -renders-> :show
     * Verifies user by :session_token, then deletes if possible
     * If error occurs, user is still logged out
 - Ratings
-  + POST '/api/ratings', *film_id and value required* -renders-> :show
-    * Request data structure: {rating: {film_id: *integer*, value: *integer*}}
+  + POST '/api/ratings', \*film_id and value required\* -renders-> :show
+    * Request data structure: {rating: {film_id: \*integer\*, value: \*integer\*}}
     * :user_id taken from #current_user helper method
   + DELETE '/api/ratings/:id' -renders-> :show
     * Verifies user identity before deleting
 - Films
-  + GET '/api/films', *JSON filtering/sorting/pagination data optional* -renders-> :index
+  + GET '/api/films', \*JSON filtering/sorting/pagination data optional\* -renders-> :index
     * For request data structure, see "Filtering, Sorting, and Pagination" below
   + GET '/api/films/:url_slug' -renders-> :show
 
-*Note:* Instead of failing "loudly" (i.e., with a 500 response status), this API
+**Note:** Instead of failing "loudly" (i.e., with a 500 response status), this API
 is designed to return an array of errors, which can be handled in a more user-friendly
 and informative way.
 
 ### Filtering, Sorting, and Pagination
 
 Films can optionally be filtered, sorted, and/or paginated by sending additional
-data with the 'GET' request to '/api/films'. The general structure is:
-{
-  filters: {
-    title: *string*,
-    description: *string*,
-    year: *integer*,
-    **or**
-    general: *string or integer*
-  },
-  sort_by: {
-    field: *"title", "description", or "year"*,
-    by: *"asc", "desc", or not present*
-  },
-  limit: *integer*,
-  page_number: *integer*
+data with the 'GET' request to '/api/films'. The general structure is:  
+{  
+&nbsp;filters: {  
+&nbsp;&nbsp;title: \*string\*,  
+&nbsp;&nbsp;description: \*string\*,  
+&nbsp;&nbsp;year: \*integer\*,  
+&nbsp;&nbsp;*or*  
+&nbsp;&nbsp;general: \*string or integer\*  
+&nbsp;},  
+&nbsp;sort_by: {  
+&nbsp;&nbsp;field: \*"title", "description", or "year"\*,  
+&nbsp;&nbsp;by: \*"asc", "desc", or not present\*  
+&nbsp;},  
+&nbsp;limit: \*integer\*,  
+&nbsp;page_number: \*integer\*  
 }
+
 **Notes:**
 - Valid field values are given.
 - Both :limit and :page_number are required for pagination.
@@ -128,6 +129,7 @@ Features like recommendation systems built on the principles of machine learning
 allow sites like Netflix to make eerily adept new film suggestions to their users.
 Data analyses could be performed on user ratings to quickly calculate and serve up
 these suggestions.
+
 Of course, in the more immediate future, the search options could be greatly
 expanded to check for common misspellings. A cache system like Redis or Memcached
 could also be added to deliver content more quickly (and should certainly be added
