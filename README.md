@@ -11,20 +11,20 @@ requests for film data, as well as posting and deleting users, sessions, and rat
 ## Database
 
 This backend is built on a PostgreSQL database, built according to the following schema:
-| Model      | Fields*       |Rails Type|
-|------------|---------------|----------|
-|User        |username       |string    |
-|            |password_digest|string    |
-|            |session_token  |string    |
-|Film        |title          |string    |
-|            |description    |text      |
-|            |url_slug       |string    |
-|            |year           |integer   |
-|Rating      |film_id        |references|
-|            |user_id        |references|
-|            |value          |integer   |
-|FilmRelation|film1_id       |integer** |
-|            |film2_id       |integer** |
+| Model        | Fields*         | Rails Type |
+| ------------ | --------------- | ---------- |
+| User         | username        | string     |
+|              | password_digest | string     |
+|              | session_token   | string     |
+| Film         | title           | string     |
+|              | description     | text       |
+|              | url_slug        | string     |
+|              | year            | integer    |
+| Rating       | film_id         | references |
+|              | user_id         | references |
+|              | value           | integer    |
+| FilmRelation | film1_id        | integer**  |
+|              | film2_id        | integer**  |
 \* All models have a :created_at and :updated_at field of type "datetime"
 \*\* The Rails "references" data type does not recognize :film1_id and :film2_id as referencing the *films* table, so higher-level validations are added to the models to ensure that both film1 and film2 exist as referenced.
 
