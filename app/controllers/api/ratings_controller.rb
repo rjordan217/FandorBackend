@@ -14,6 +14,8 @@ class Api::RatingsController < ApplicationController
   def destroy
     @rating = Rating.find(params[:id])
     @rating.destroy if @rating && (current_user.id == @rating.user_id)
+    @errors += @rating.errors.full_messages
+    @rating = Rating.new
     render :show
   end
 
@@ -24,7 +26,7 @@ class Api::RatingsController < ApplicationController
 
   def ensure_logged_in
     if current_user.nil?
-      flash[:errors] = ["Must be logged in to make or delete item requests."]
+      flash[:errors] = ["Must be logged in to rate films."]
       redirect_to '/'
     end
   end

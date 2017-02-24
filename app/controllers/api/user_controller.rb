@@ -13,9 +13,14 @@ class Api::UserController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    logout! unless @user.nil?
+    errs = []
+    unless @user.nil?
+      @user.destroy
+      errs = @user.errors.full_messages
+      logout! unless errs.empty?
+    end
     @user = User.new
+    @errors += errs
     render :show
   end
 
