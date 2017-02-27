@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+ #root {
+   width: 100%;
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+ }
+
+ #root div {
+   border: 1px solid black;
+   padding: 1em;
+ }
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 14px;
+}
+
+.user {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}

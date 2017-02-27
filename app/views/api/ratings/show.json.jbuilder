@@ -1,1 +1,2 @@
-json.partial! 'api/shared/rating', rating: @rating, errors: @errors
+json.partial! 'api/shared/rating', rating: @rating
+json.errors @errors

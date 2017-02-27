@@ -1,0 +1,30 @@
+{
+  "name": "fandorbackend",
+  "version": "1.0.0",
+  "description": "Backend challenge for Fandor",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjordan217/FandorBackend.git"
+  },
+  "author": "Ryan Jordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjordan217/FandorBackend/issues"
+  },
+  "homepage": "https://github.com/rjordan217/FandorBackend#readme",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  },
+  "engines": {
+    "node": "5.7.1",
+    "npm": "3.6.0"
+  }
+}

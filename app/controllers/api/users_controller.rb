@@ -1,10 +1,14 @@
-class Api::UserController < ApplicationController
+class Api::UsersController < ApplicationController
   before_action :verify_login, only: [:show, :destroy]
 
   def create
     @user = User.new(user_params)
-    login!(@user) if @user.save
-    @errors += @user.errors.full_messages
+    if @user.save
+      login!(@user)
+    else
+      @errors += @user.errors.full_messages
+      @user = User.new
+    end
     render :show
   end
 
