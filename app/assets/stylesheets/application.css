@@ -40,3 +40,7 @@ p {
   justify-content: space-around;
   flex-direction: column;
 }
+
+.error-msg {
+  color: red;
+}

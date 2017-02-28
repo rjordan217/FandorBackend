@@ -165,7 +165,7 @@ var tagGeneratorFunctions = {
 
     if(isDetail) {
       $content.push($('<p>' + data["description"] + '</p><p>Average Rating: ' +
-                data["average_rating"] + '</p>'));
+                (Math.round(10 * data["average_rating"]) / 10) + '</p>'));
     }
     $film.data('url_slug', data['url_slug']);
     $film.data('film_id',data['id']);
@@ -202,7 +202,7 @@ var tagGeneratorFunctions = {
   rating: function(hasBeenRated, ratingVal) {
     var $rating = $('<p class="rating"></p>');
     if(hasBeenRated) {
-      $rating.html(ratingVal)
+      $rating.html("Your rating: " + ratingVal)
     } else {
       displayForm($rating,'rating');
     }

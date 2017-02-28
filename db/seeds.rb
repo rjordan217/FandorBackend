@@ -9,8 +9,9 @@ require 'faker'
 
 User.create!(username: 'adminLovesPizza', password: 'L337F0rLyf3')
 
+
 prng = Random.new
-10.times do
+20.times do
   attrs = {
     title: Faker::LordOfTheRings.unique.location,
     description: Faker::StarWars.quote,
@@ -20,9 +21,29 @@ prng = Random.new
   Film.create!(attrs)
 end
 
-10.times do
-  film1_id = prng.rand(1..10)
-  film2_id = prng.rand(1..10)
-  film2_id = prng.rand(1..10) until film1_id != film2_id
+20.times do
+  attrs = {
+    title: Faker::Book.unique.title,
+    description: Faker::Shakespeare.hamlet_quote,
+    year: prng.rand(1950..2017)
+  }
+  attrs[:url_slug] = Film.parse_title_to_slug(attrs[:title])
+  Film.create!(attrs)
+end
+
+20.times do |i|
+  User.create!(username: "iHeartMovies#{i + 1}", password: "C4nn35f357")
+  40.times do |j|
+    Rating.create!(user_id: i + 2, film_id: j + 1, value: prng.rand(1..10))
+  end
+end
+
+40.times do
+  film1_id = prng.rand(1..40)
+  film2_id = prng.rand(1..40)
+  film2_id = prng.rand(1..40) until film1_id != film2_id
+begin
   Film.add_relation([film1_id, film2_id])
+rescue
+end
 end
